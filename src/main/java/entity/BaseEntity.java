@@ -1,13 +1,33 @@
 package entity;
 
+import javax.persistence.*;
 import java.util.Date;
 
+
+
+//    Entitiyler herzaman için baseEntitiy sınıfını extend edeceğinden dolayı super sınıf olarak işratlendi.
+//    Buradaki tablo oluşutulma stratejisi alt sınıflarına yansıtılacak..
+
+@MappedSuperclass
 abstract class BaseEntity {
 
+@GeneratedValue(strategy = GenerationType.IDENTITY)
+@Id
+@Column (name="id")
     private Long id;
+
+@Temporal(TemporalType.TIMESTAMP)
+@Column(name="olusturulma_tarihi")
     private Date olusturulmaTarihi;
+
+@Temporal(TemporalType.TIMESTAMP)
+@Column(name = "guncelleme_tarihi")
     private Date guncellemeTarihi;
+
+@Column(name = "olusturan_kisi")
     private String olusturanKisi;
+
+@Column(name = "kullanici_adi")
     private String kullaniciAdi;
 
 
