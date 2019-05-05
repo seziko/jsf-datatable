@@ -73,6 +73,10 @@
 
                 <p:outputLabel value="Departman:"/>
                 <p:selectOneMenu id="departman_input" value="#{personelView.personel.departman}">
+
+                    <p:ajax event="itemSelect" listener="#{personelView.departmanSelected}"
+                            update="personel_tanimlama_form growl"/>
+
                     <f:selectItem noSelectionOption="true" itemLabel="Seçiniz" itemValue="#{null}" />
                     <f:selectItems value="#{personelView.departmanList}"/>
             </p:selectOneMenu>

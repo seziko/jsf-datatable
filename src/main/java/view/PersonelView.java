@@ -21,7 +21,7 @@ public class PersonelView {
     private List<Personel> personelList;
     private List<String> departmanList;
     private Map<Integer,String> unvanMap;
-    private Integer unvanKey;
+    private String unvanKey;
 
 
     @PostConstruct
@@ -70,7 +70,7 @@ public class PersonelView {
 
     public void onUnvanSelected(SelectEvent selectEvent){
 
-        unvanKey= (Integer) selectEvent.getObject();
+        unvanKey= (String) selectEvent.getObject();
 
         System.out.println(unvanKey);
 
@@ -80,7 +80,7 @@ public class PersonelView {
             case "Stajyer":
                 personel.setMaas(1000.0);
                 break;
-            case "Uzman":
+            case "Proje Yöneticisi":
                 personel.setMaas(5000.0);
                 break;
                 default:
@@ -90,6 +90,21 @@ public class PersonelView {
         }
 
         FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Ünvan Seçildi"));
+
+
+    }
+
+    public void departmanSelected(SelectEvent selectEvent){
+        String tempDepartman= (String) selectEvent.getObject();
+        switch (tempDepartman){
+            case "Arge":
+                unvanMap.clear();
+                unvanMap.put(3,"Kıdemli");
+                unvanMap.put(6,"Proje Yöneticisi");
+                break;
+        }
+
+
 
 
     }
@@ -135,11 +150,11 @@ public class PersonelView {
         this.unvanMap = unvanMap;
     }
 
-    public Integer getUnvanKey() {
+    public String getUnvanKey() {
         return unvanKey;
     }
 
-    public void setUnvanKey(Integer unvanKey) {
+    public void setUnvanKey(String unvanKey) {
         this.unvanKey = unvanKey;
     }
 }
