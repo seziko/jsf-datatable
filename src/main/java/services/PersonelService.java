@@ -52,6 +52,7 @@ public class PersonelService implements IPersonelservices{
             yeniPersonel.setDogumTarihi(personel.getDogumTarihi());
             yeniPersonel.setTcNo(personel.getTcNo());
             yeniPersonel.setTelNo(personel.getTelNo());
+            yeniPersonel.setKullaniciAdi(personel.getKullaniciAdi());
 
             idGenerator++;
 

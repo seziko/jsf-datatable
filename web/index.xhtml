@@ -18,6 +18,11 @@
         <h:form>
             <p:panelGrid id="personel_tanimla_grid" columns="3">
 
+                <p:outputLabel value="*Kullanıcı Adı"/>
+                <p:inputText id="kullaniciAdi_input" value="#{personelView.personel.kullaniciAdi}"
+                             required="true" requiredMessage="Bu alan zorunludur"/>
+                <p:message for="kullaniciAdi_input" display="text.warning"/>
+
                 <p:outputLabel value="*Adı:"/>
                 <p:inputText id="adi_input" value="#{personelView.personel.ad}"
                              required="true" requiredMessage="Bu Alan Zorunludur."/>
@@ -73,7 +78,7 @@
 
                 <p:outputLabel value="*Unvan:"/>
                 <p:inputText id="unvan_input"
-                             maxlength="15"
+                             maxlength="50"
                              required="true"
                              requiredMessage="Bu Alan Zorunludur."
                              value="#{personelView.personel.unvan}"
@@ -86,6 +91,8 @@
             <p:commandButton value="Kaydet"
                              update="personel_tanimla_grid growl :liste_form:personel_listesi"
                              actionListener="#{personelView.onKaydet}"/>
+
+
         </h:form>
     </p:panel>
 
@@ -95,6 +102,10 @@
 
                 <p:column headerText="Id">
                     <h:outputText value="#{per.id}"/>
+                </p:column>
+
+                <p:column headerText="Kullanici Adi">
+                        <h:outputText value="#{per.kullaniciAdi}"/>
                 </p:column>
 
                 <p:column headerText="Adı">
@@ -112,6 +123,8 @@
                 <p:column headerText="Telefon Numarası">
                     <h:outputText value="#{per.telNo}"/>
                 </p:column>
+
+
 
             </p:dataTable>
         </h:form>

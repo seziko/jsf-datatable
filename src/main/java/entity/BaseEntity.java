@@ -8,6 +8,7 @@ abstract class BaseEntity {
     private Date olusturulmaTarihi;
     private Date guncellemeTarihi;
     private String olusturanKisi;
+    private String kullaniciAdi;
 
 
     public Long getId() {
@@ -40,6 +41,10 @@ abstract class BaseEntity {
 
     public void setOlusturanKisi(String olusturanKisi) {
         this.olusturanKisi = olusturanKisi;
+    }
+
+    public void setKullaniciAdi (String kullaniciAdi){
+        this.kullaniciAdi = kullaniciAdi;
     }
 }
 

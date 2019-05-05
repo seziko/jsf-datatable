@@ -10,6 +10,7 @@ public class Personel extends Kisi{
     private String sicilNo;
     private String departman;
     private String unvan;
+    private String kullaniciAdi;
 
 
     public Personel(){
@@ -23,6 +24,7 @@ public class Personel extends Kisi{
         this.sicilNo = sicilNo;
         this.departman = departman;
         this.unvan = unvan;
+        this.kullaniciAdi = kullaniciAdi;
     }
 
     public Double getMaas() {
@@ -64,6 +66,13 @@ public class Personel extends Kisi{
     public void setUnvan(String unvan) {
         this.unvan = unvan;
     }
+
+    public String getKullaniciAdi() {
+        return kullaniciAdi;
+    }
+
+    public void setKullaniciAdi (String kullaniciAdi) {this.kullaniciAdi = kullaniciAdi;}
+
 
 
 }

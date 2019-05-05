@@ -21,7 +21,7 @@ public class PersonelView {
     @PostConstruct
     public void init(){
      personel= new Personel();
-     personelServices=new PersonelService();
+     personelServices= PersonelService.getInstance();
      personelList = new ArrayList<>();
      departmanList = new ArrayList<>();
 
@@ -44,7 +44,7 @@ public class PersonelView {
             personelList=personelServices.personelListesiGetir();
             FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Kayıt işlemi başarılı..",null));
         }else {
-            FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Kayıt işlemi başarısız..",null));
+            FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Kayıt işlemi başarısız.. Zorunlu alanları kontrol ediniz..",null));
         }
     }
 
@@ -79,4 +79,6 @@ public class PersonelView {
     public void setDepartmanList(List<String> departmanList) {
         this.departmanList = departmanList;
     }
+
+
 }
