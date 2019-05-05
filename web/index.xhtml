@@ -75,7 +75,7 @@
                 <p:selectOneMenu id="departman_input" value="#{personelView.personel.departman}">
 
                     <p:ajax event="itemSelect" listener="#{personelView.departmanSelected}"
-                            update="personel_tanimlama_form growl"/>
+                            update="departman_input"/>
 
                     <f:selectItem noSelectionOption="true" itemLabel="Seçiniz" itemValue="#{null}" />
                     <f:selectItems value="#{personelView.departmanList}"/>
@@ -86,7 +86,7 @@
                 <p:selectOneMenu id="unvan_input" value="#{personelView.unvanKey}">
 
                     <p:ajax event="itemSelect" listener="#{personelView.onUnvanSelected}"
-                    update= "personel_tanimlama_form growl" />
+                    update= "unvan_input" />
 
                     <f:selectItem noSelectionOption="true"
                               itemLabel="Seçiniz.."
@@ -96,7 +96,7 @@
                 <f:selectItems var="unvan" value="#{personelView.unvanMap.entrySet()}"
                               itemLabel="#{unvan.value}" itemValue="#{unvan.key}"/>
                 </p:selectOneMenu>
-                 <p:message for="unvan_input" display="text,icon"/>
+                 <p:message for="maas_spinnner" display="text,icon"/>
 
 
             </p:panelGrid>

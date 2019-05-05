@@ -1,5 +1,6 @@
 package services;
 
+import dao.PersonelDao;
 import entity.Personel;
 
 import java.util.ArrayList;
@@ -11,6 +12,11 @@ public class PersonelService implements IPersonelservices{
     private List<Personel> personelList=new ArrayList<Personel>();
     private Long idGenerator=1L;
     private static PersonelService instance;
+    private PersonelDao personelDao=new PersonelDao();
+
+    private PersonelService(){
+
+    }
 
 
 
@@ -36,27 +42,29 @@ public class PersonelService implements IPersonelservices{
 
         if (personel!=null){
 
-            Personel yeniPersonel=new Personel();
+            personelDao.kaydet(personel);
 
-            yeniPersonel.setId(idGenerator);
-            yeniPersonel.setDepartman(personel.getDepartman());
-            yeniPersonel.setIseGirisTarih(personel.getIseGirisTarih());
-            yeniPersonel.setMaas(personel.getMaas());
-            yeniPersonel.setSicilNo(personel.getSicilNo());
-            yeniPersonel.setUnvan(personel.getUnvan());
-            yeniPersonel.setOlusturanKisi("Developer");
-            yeniPersonel.setOlusturulmaTarihi(new Date());
-            yeniPersonel.setGuncellemeTarihi(null);
-            yeniPersonel.setAd(personel.getAd());
-            yeniPersonel.setSoyad(personel.getSoyad());
-            yeniPersonel.setDogumTarihi(personel.getDogumTarihi());
-            yeniPersonel.setTcNo(personel.getTcNo());
-            yeniPersonel.setTelNo(personel.getTelNo());
-            yeniPersonel.setKullaniciAdi(personel.getKullaniciAdi());
-
-            idGenerator++;
-
-            personelList.add(yeniPersonel);
+//            Personel yeniPersonel=new Personel();
+//
+//            yeniPersonel.setId(idGenerator);
+//            yeniPersonel.setDepartman(personel.getDepartman());
+//            yeniPersonel.setIseGirisTarih(personel.getIseGirisTarih());
+//            yeniPersonel.setMaas(personel.getMaas());
+//            yeniPersonel.setSicilNo(personel.getSicilNo());
+//            yeniPersonel.setUnvan(personel.getUnvan());
+//            yeniPersonel.setOlusturanKisi("Developer");
+//            yeniPersonel.setOlusturulmaTarihi(new Date());
+//            yeniPersonel.setGuncellemeTarihi(null);
+//            yeniPersonel.setAd(personel.getAd());
+//            yeniPersonel.setSoyad(personel.getSoyad());
+//            yeniPersonel.setDogumTarihi(personel.getDogumTarihi());
+//            yeniPersonel.setTcNo(personel.getTcNo());
+//            yeniPersonel.setTelNo(personel.getTelNo());
+//            yeniPersonel.setKullaniciAdi(personel.getKullaniciAdi());
+//
+//            idGenerator++;
+//
+//            personelList.add(yeniPersonel);
 
 
         }
@@ -65,6 +73,7 @@ public class PersonelService implements IPersonelservices{
     }
 
     public List<Personel> personelListesiGetir() {
-        return personelList;
+        return personelDao.findAll();
     }
+
 }

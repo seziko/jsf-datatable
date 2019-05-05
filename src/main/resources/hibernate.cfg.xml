@@ -9,10 +9,12 @@
     <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/postgres?currentSchema=public</property>
     <property name="connection.username">postgres</property>
     <property name="connection.password">root</property>
-    <property name="hibernate.hbm2ddl.auto">create</property>
+    <property name="hibernate.hbm2ddl.auto">create-drop</property>
     <property name="hibernate.show_sql">true</property>
 
     <mapping class="entity.BaseEntity"/>
+    <mapping class="entity.Personel"/>
+    <mapping class="entity.Kisi"/>
 
     <!-- <property name="connection.username"/> -->
     <!-- <property name="connection.password"/> -->

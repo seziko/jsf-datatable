@@ -3,28 +3,29 @@ package entity;
 import javax.persistence.*;
 import java.util.Date;
 
+@Inheritance(strategy = InheritanceType.JOINED)
 @Entity
 @Table(name = "kisi")
-public class Kisi extends BaseEntity{
+public class Kisi extends BaseEntity {
 
-@Column(name="ad",nullable = false,length = 30)
+    @Column(name = "ad", nullable = false, length = 30)
     private String ad;
 
-@Column(name = "soyad",nullable = false,length = 30)
+    @Column(name = "soyad", nullable = false, length = 30)
     private String soyad;
 
-@Temporal(TemporalType.DATE)
-@Column(name = "dogum_tarihi",nullable = false)
+    @Temporal(TemporalType.DATE)
+    @Column(name = "dogum_tarihi", nullable = false)
     private Date dogumTarihi;
 
-@Column(name = "tc_no",nullable = false,length = 11)
+    @Column(name = "tc_no", nullable = false, length = 11)
     private String tcNo;
 
-@Column(name = "tel_no",length = 16)
+    @Column(name = "tel_no", length = 16)
     private String telNo;
 
 
-    public Kisi(){
+    public Kisi() {
 
     }
 
@@ -75,9 +76,6 @@ public class Kisi extends BaseEntity{
     public void setTelNo(String telNo) {
         this.telNo = telNo;
     }
-
-
-
 
 
 }

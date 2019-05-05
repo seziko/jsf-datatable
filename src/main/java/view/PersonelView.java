@@ -62,9 +62,11 @@ public class PersonelView {
             personelServices.kaydet(personel);
 
             personelList=personelServices.personelListesiGetir();
-            FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Kayıt işlemi başarılı..",null));
+            FacesContext.getCurrentInstance()
+                    .addMessage(null,new FacesMessage("Kayıt işlemi başarılı..",null));
         }else {
-            FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Kayıt işlemi başarısız.. Zorunlu alanları kontrol ediniz..",null));
+            FacesContext.getCurrentInstance()
+                    .addMessage(null,new FacesMessage("Kayıt işlemi başarısız.. Zorunlu alanları kontrol ediniz..",null));
         }
     }
 

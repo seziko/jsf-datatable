@@ -2,7 +2,7 @@ package entity;
 
 import javax.persistence.*;
 import java.util.Date;
-
+@Inheritance(strategy = InheritanceType.JOINED)
 @Entity
 @Table(name = "Personel")
 public class Personel extends Kisi{
