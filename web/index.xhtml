@@ -15,7 +15,7 @@
 
     <p:growl globalOnly="true" id="growl"/>
     <p:panel>
-        <h:form>
+        <h:form id="personel_tanimlama_form">
             <p:panelGrid id="personel_tanimla_grid" columns="3">
 
                 <p:outputLabel value="*Kullanıcı Adı"/>
@@ -53,7 +53,9 @@
 
                 <p:outputLabel value="Maaş:"/>
                 <p:spinner id="maas_spinnner"
+                           min="500"
                            stepFactor="0.75"
+                           max="15000"
                            value="#{personelView.personel.maas}"/>
                 <p:message for="maas_spinnner" display="text,icon"/>
 
@@ -77,13 +79,20 @@
                 <p:message for="departman_input" display="text,icon"/>
 
                 <p:outputLabel value="*Unvan:"/>
-                <p:inputText id="unvan_input"
-                             maxlength="50"
-                             required="true"
-                             requiredMessage="Bu Alan Zorunludur."
-                             value="#{personelView.personel.unvan}"
-                />
-                <p:message for="unvan_input" display="text,icon"/>
+                <p:selectOneMenu id="unvan_input" value="#{personelView.unvanKey}">
+
+                    <p:ajax event="itemSelect" listener="#{personelView.onUnvanSelected}"
+                    update= "personel_tanimlama_form growl" />
+
+                    <f:selectItem noSelectionOption="true"
+                              itemLabel="Seçiniz.."
+                              itemValue="#{null}"/>
+
+
+                <f:selectItems var="unvan" value="#{personelView.unvanMap.entrySet()}"
+                              itemLabel="#{unvan.value}" itemValue="#{unvan.key}"/>
+                </p:selectOneMenu>
+                 <p:message for="unvan_input" display="text,icon"/>
 
 
             </p:panelGrid>

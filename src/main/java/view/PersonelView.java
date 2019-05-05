@@ -1,6 +1,7 @@
 package view;
 
 import entity.Personel;
+import org.primefaces.event.SelectEvent;
 import services.PersonelService;
 
 import javax.annotation.PostConstruct;
@@ -8,7 +9,9 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @ManagedBean
 public class PersonelView {
@@ -17,6 +20,9 @@ public class PersonelView {
     private PersonelService personelServices;
     private List<Personel> personelList;
     private List<String> departmanList;
+    private Map<Integer,String> unvanMap;
+    private Integer unvanKey;
+
 
     @PostConstruct
     public void init(){
@@ -31,6 +37,19 @@ public class PersonelView {
      departmanList.add("Mali İşler");
      departmanList.add("Hizmetli");
 
+     unvanMap = new HashMap<>();
+     unvanMap.put(1,"Uzman");
+     unvanMap.put(2,"Yönetici");
+     unvanMap.put(3,"Kıdemli");
+     unvanMap.put(4,"Asistan");
+     unvanMap.put(5,"Stajyer");
+     unvanMap.put(6,"Proje Yöneticisi");
+
+     for (Map.Entry<Integer,String> entry:unvanMap.entrySet()){
+         entry.getKey();
+         entry.getValue();
+     }
+
     }
 
     /**
@@ -41,12 +60,40 @@ public class PersonelView {
 
         if (personel.getAd()!=null){
             personelServices.kaydet(personel);
+
             personelList=personelServices.personelListesiGetir();
             FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Kayıt işlemi başarılı..",null));
         }else {
             FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Kayıt işlemi başarısız.. Zorunlu alanları kontrol ediniz..",null));
         }
     }
+
+    public void onUnvanSelected(SelectEvent selectEvent){
+
+        unvanKey= (Integer) selectEvent.getObject();
+
+        System.out.println(unvanKey);
+
+        String tempUnvan=unvanMap.get(unvanKey);
+
+        switch (tempUnvan){
+            case "Stajyer":
+                personel.setMaas(1000.0);
+                break;
+            case "Uzman":
+                personel.setMaas(5000.0);
+                break;
+                default:
+                    personel.setMaas(2200.00);
+                    break;
+
+        }
+
+        FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Ünvan Seçildi"));
+
+
+    }
+
 
     public Personel getPersonel() {
         return personel;
@@ -80,5 +127,19 @@ public class PersonelView {
         this.departmanList = departmanList;
     }
 
+    public Map<Integer, String> getUnvanMap() {
+        return unvanMap;
+    }
 
+    public void setUnvanMap(Map<Integer, String> unvanMap) {
+        this.unvanMap = unvanMap;
+    }
+
+    public Integer getUnvanKey() {
+        return unvanKey;
+    }
+
+    public void setUnvanKey(Integer unvanKey) {
+        this.unvanKey = unvanKey;
+    }
 }
